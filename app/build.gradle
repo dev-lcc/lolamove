@@ -1,0 +1,249 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'kotlinx-serialization'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+def propFile = rootProject.file("local.properties")
+def locProp = new Properties()
+locProp.load(propFile.newDataInputStream())
+
+android {
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "hk.com.lolamove"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        lolamove {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+        lolamovedev {
+            keyAlias keystoreProperties['keyAliasDev']
+            keyPassword keystoreProperties['keyPasswordDev']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            useProguard false
+
+            firebaseCrashlytics {
+                mappingFileUploadEnabled false
+                nativeSymbolUploadEnabled false
+            }
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            useProguard true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            firebaseCrashlytics {
+                mappingFileUploadEnabled true
+                // Enable processing and uploading of native symbols to Crashlytics servers.
+                // By default, this is disabled to improve build speeds.
+                // This flag must be enabled to see properly-symbolicated native
+                // stack traces in the Crashlytics dashboard.
+                nativeSymbolUploadEnabled true
+                strippedNativeLibsDir 'build/intermediates/stripped_native_libs/release/out/lib'
+                unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/release/out/lib'
+            }
+        }
+    }
+
+    productFlavors {
+        flavorDimensions "default"
+        prod {
+            signingConfig signingConfigs.lolamove
+
+            // TODO:: When multiple environments are setup(i.e. PROD Environment), change this value accordingly
+            buildConfigField "String", "REST_API_URL_ENDPOINT", "\"https://mock-api-mobile.dev.lalamove.com/\""
+        }
+        dev {
+            applicationIdSuffix ".dev"
+            signingConfig signingConfigs.lolamovedev
+
+            // TODO:: When multiple environments are setup(i.e. DEV Environment), change this value accordingly
+            buildConfigField "String", "REST_API_URL_ENDPOINT", "\"https://mock-api-mobile.dev.lalamove.com/\""
+        }
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+    // https://stackoverflow.com/a/48988779/11419056
+    // * Go to Build, Execution, Deployment > Compiler > Kotlin Compiler BUT Other Settings > Kotlin compiler
+    // * Change the Target JVM version to 1.8, then Apply
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs += [
+                "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
+                "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+        ]
+    }
+
+    buildFeatures {
+        // ViewBinding Support
+        viewBinding {
+            enabled = true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/main.kotlin_module'
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Jetbrains Kotlin Dependencies
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version"
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "androidx.arch.core:core-common:$androidXCoreTesting"
+    testImplementation "androidx.arch.core:core-runtime:$androidXCoreTesting"
+    testImplementation "androidx.arch.core:core-testing:$androidXCoreTesting"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "io.mockk:mockk:$mockKVersion"
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation "androidx.test:runner:$androidXTest"
+    androidTestImplementation "androidx.test:rules:$androidXTest"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidXTestExt"
+    // mockk.io - https://github.com/mockk/mockk/issues/281
+    androidTestImplementation("io.mockk:mockk-android:$mockKVersion") {
+        exclude module: 'objenesis'
+    }
+
+    // AndroidX
+    implementation "androidx.core:core:$androidXCoreVersion"
+    implementation "androidx.core:core-ktx:$androidXCoreVersion"
+    implementation "androidx.annotation:annotation:$androidXAnnotationVersion"
+    // AndroidX Activity
+    implementation "androidx.activity:activity:$androidXActivity"
+    implementation "androidx.activity:activity-ktx:$androidXActivity"
+    // AndroidX Fragment
+    implementation "androidx.fragment:fragment-ktx:$androidXFragmentVersion"
+    // Material Components
+    implementation "com.google.android.material:material:$rootProject.androidMaterialComponentsVersion"
+    // UI Components
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$androidXRecyclerViewVersion"
+    implementation "androidx.recyclerview:recyclerview:$androidXRecyclerViewVersion"
+    implementation "androidx.cardview:cardview:$androidXCardViewVersion"
+    implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
+    implementation "androidx.appcompat:appcompat-resources:$androidXAppCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+    // Loupe ImageView Helper
+    implementation "com.ablanco.zoomy:zoomy:$zoomyImageViewHelperVersion"
+
+    // AndroidX Navigation
+    implementation "androidx.navigation:navigation-fragment:$androidXNavigationVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidXNavigationVersion"
+    implementation "androidx.navigation:navigation-ui:$androidXNavigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidXNavigationVersion"
+
+    // AndroidX Lifecycle
+    kapt "androidx.lifecycle:lifecycle-common-java8:$androidXLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidXLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidXLifecycleVersion"
+
+    // Coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    // Coroutine Flow Binding
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-android:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-core:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-activity:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-drawerlayout:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-lifecycle:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-navigation:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-preference:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager2:$flowbindingVersion"
+
+    // Firebase SDK
+    // Import the BoM for the Firebase platform(When using the BoM, you don't specify versions in Firebase library dependencies)
+    implementation platform("com.google.firebase:firebase-bom:$firebaseSdkVersion")
+    // Declare the dependencies for Authentication
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    // Declare the dependency for the Firebase Crashlytics NDK library.
+    // If you previously declared the Firebase Crashlytics dependency, replace it
+    /*implementation "com.google.firebase:firebase-crashlytics-ktx"*/
+    implementation 'com.google.firebase:firebase-crashlytics-ndk'
+
+    // Facebook Stetho - A sophisticated debug bridge for Android applications
+    implementation "com.facebook.stetho:stetho-okhttp3:$facebookStethoVersion"
+
+    // Timber Log
+    implementation "com.jakewharton.timber:timber:$timberLogVersion"
+
+    // CircleImageView
+    implementation "de.hdodenhof:circleimageview:$dehdodenhofcircleimageview"
+
+    // Chris Banes PhotoView
+    implementation "com.github.chrisbanes:PhotoView:$chrisBanesPhotoViewVersion"
+
+    // Glide Image Loader
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+
+    // ViewBindingPropertyDelegate
+    implementation "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:$viewbindingpropertydelegateVersion"
+
+}

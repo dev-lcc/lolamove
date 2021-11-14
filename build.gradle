@@ -1,0 +1,129 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext {
+    minSdkVersion = 21
+    targetSdkVersion = 31
+    compileSdkVersion = 31
+    buildToolsVersion = '30.0.3'
+
+    kotlinx_serialization_version = '1.0.0'
+
+    junitVersion = '4.12'
+    mockitoVersion = '3.1.0'
+    androidXCoreTesting = '2.1.0'
+    androidXTest = '1.1.1'
+    androidXTestExt = '1.0.0'
+    mockKVersion = '1.11.0'
+
+    // Coroutines
+    coroutinesVersion = '1.4.3'
+    // UI FlowBinding(https://github.com/ReactiveCircus/FlowBinding)
+    flowbindingVersion = '1.2.0'
+
+    // AndroidX Framework
+    androidXAppCompatVersion = '1.3.1'
+    // AndroidX Core
+    androidXCoreVersion = '1.7.0'
+    androidXAnnotationVersion = '1.1.0'
+    // AndroidX UI Components
+    androidXRecyclerViewVersion = '1.1.0'
+    constraintLayoutVersion = '2.1.1'   // ConstraintLayout
+    viewPager2Version = '1.0.0' // ViewPager2
+
+    // Material Components
+    androidMaterialComponentsVersion = '1.4.0'
+    androidXCardViewVersion = '1.0.0'   // Material Card
+
+    // Loupe ImageView Helper
+    zoomyImageViewHelperVersion = '1.1.0'
+
+    // AndroidX Activity
+    androidXActivity = '1.1.0'
+    // AndroidX Fragment
+    androidXFragmentVersion = '1.2.4'
+    // AndroidX Navigation
+    androidXNavigationVersion = '2.3.0'
+
+    // Firebase SDK BOM
+    firebaseSdkVersion = '29.0.0'
+
+    // Timber Log
+    timberLogVersion = '4.7.1'
+
+    // Android X - Jetpack Components
+    androidXLifecycleVersion = '2.4.0'
+    androidXLifecycleKtxVersion = '2.3.1'
+
+    // Dependency Injection Framework
+    koinVersion = '2.2.3'
+
+    // Network API
+    retrofitVersion = '2.8.1'
+    retrofitKotlinxSerializationConverterVersion = '0.8.0'
+    okhttpVersion = '4.9.0'
+
+    // Local DB
+    androidXRoomVersion = '2.2.5'
+
+    // Facebook API
+    facebookApiVersion = '7.0.0'
+    // Facebook Stetho
+    facebookStethoVersion = '1.5.1'
+
+    // Circle Image View
+    dehdodenhofcircleimageview = '3.1.0'
+
+    // Glide Image Loader
+    glideVersion = '4.11.0'
+
+    // Range SeekBar
+    innovatticRangeSeekBar = '1.0.8'
+
+    // LeakCanary
+    leakCanaryVersion = '2.6'
+    // https://github.com/kirich1409/ViewBindingPropertyDelegate
+    viewbindingpropertydelegateVersion = '1.4.1'
+
+    // Chris Banes PhotoView (https://github.com/Baseflow/PhotoView)
+    chrisBanesPhotoViewVersion = '2.3.0'
+}
+
+buildscript {
+    // Buildscript Dependencies
+    ext.kotlin_version = "1.5.10"
+    ext.buildGradleToolVersion = '4.2.2'
+    ext.firebaseCrashlyticsGradleVersion = '2.5.2' // Firebase Crashlytics
+    ext.googleServicesVersion = '4.3.10'
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "https://maven.google.com" }
+        maven { url 'https://maven.fabric.io/public' }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$buildGradleToolVersion"
+        classpath "com.google.gms:google-services:$googleServicesVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$firebaseCrashlyticsGradleVersion"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter() // Warning: this repository is going to shut down soon
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://maven.google.com" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
