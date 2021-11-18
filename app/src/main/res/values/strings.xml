@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">L0LAMove</string>
+
+    <string name="home_bottom_nav_deliveries">Deliveries</string>
+    <string name="home_bottom_nav_favorites">Favorites</string>
+    <string name="home_bottom_nav_myaccount">My Account</string>
+
 </resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <!-- android:iconTint="@color/bottom_navigation_view_item_selector" -->
+    <item
+        android:id="@+id/fragmentDeliveries"
+        android:icon="@drawable/ic_delivery"
+        android:title="@string/home_bottom_nav_deliveries"
+        android:iconTint="@color/bottom_navigation_view_item_selector"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/fragmentFavorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/home_bottom_nav_favorites"
+        android:iconTint="@color/bottom_navigation_view_item_selector"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/fragmentMyAccount"
+        android:icon="@drawable/ic_account"
+        android:title="@string/home_bottom_nav_myaccount"
+        android:iconTint="@color/bottom_navigation_view_item_selector"
+        android:orderInCategory="102"
+        app:showAsAction="always"
+        />
+</menu>
