@@ -172,6 +172,8 @@ dependencies {
     // AndroidX Activity
     implementation "androidx.activity:activity:$androidXActivity"
     implementation "androidx.activity:activity-ktx:$androidXActivity"
+    // AndriodX SplashScreen
+    implementation "androidx.core:core-splashscreen:$androidXSplashScreen"
     // AndroidX Fragment
     implementation "androidx.fragment:fragment-ktx:$androidXFragmentVersion"
     // Material Components

@@ -24,6 +24,8 @@ ext {
     // AndroidX Core
     androidXCoreVersion = '1.7.0'
     androidXAnnotationVersion = '1.1.0'
+    // AndroidX SplashScreen
+    androidXSplashScreen = '1.0.0-alpha01'
     // AndroidX UI Components
     androidXRecyclerViewVersion = '1.1.0'
     constraintLayoutVersion = '2.1.1'   // ConstraintLayout
