@@ -16,6 +16,7 @@ data class Delivery(
     val route: Route? = null,
     val sender: Sender? = null,
     // Derived Field(s)
+    val isFavorite: Boolean? = false,
     val totalFee: Float? = (deliveryFee ?: 0f) + (surcharge ?: 0f),
     val currencySymbol: String? = null, // i.e. "$"
 ): Parcelable
