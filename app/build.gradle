@@ -184,6 +184,17 @@ dependencies {
     implementation "androidx.appcompat:appcompat-resources:$androidXAppCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
+    // Dependency Injection Framework
+    // Koin Dependency Injection
+    // Koin for Kotlin
+    implementation "io.insert-koin:koin-core:$koinVersion"
+    // Koin for Android
+    implementation "io.insert-koin:koin-android:$koinVersion"
+    // Koin Test
+    testImplementation("io.insert-koin:koin-test:$koinVersion") {
+        exclude group: 'org.mockito'
+    }
+
     // Loupe ImageView Helper
     implementation "com.ablanco.zoomy:zoomy:$zoomyImageViewHelperVersion"
 

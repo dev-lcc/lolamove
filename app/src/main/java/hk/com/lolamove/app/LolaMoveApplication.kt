@@ -4,19 +4,33 @@ import android.app.Application
 import android.util.Log
 import com.facebook.stetho.Stetho
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import hk.com.lolamove.data.di.DataModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.loadKoinModules
+import org.koin.core.context.startKoin
 import timber.log.Timber
 
-class LolaMoveApplication: Application() {
+class LolaMoveApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
         val buildIsDebug = BuildConfig.DEBUG
 
-        // TODO:: Init Koin Dependency here...
+        // Init Koin Dependency here...
+        startKoin {
+            androidContext(applicationContext)
+
+            loadKoinModules(
+                DataModule(
+                    restApiUrlEndPoint = BuildConfig.REST_API_URL_ENDPOINT,
+                    isDebug = BuildConfig.DEBUG,
+                ).build()
+            )
+        }
 
         // Facebook STETHO
-        if(buildIsDebug) {
+        if (buildIsDebug) {
             Stetho.initializeWithDefaults(applicationContext)
         }
 
@@ -24,7 +38,7 @@ class LolaMoveApplication: Application() {
         val crashlytics = FirebaseCrashlytics.getInstance()
         // Integrate with Timber Log
         Timber.plant(
-            if(buildIsDebug) Timber.DebugTree()
+            if (buildIsDebug) Timber.DebugTree()
             else CrashReportingTree(crashlytics)
         )
 
@@ -37,7 +51,7 @@ class LolaMoveApplication: Application() {
      */
     class CrashReportingTree(
         private val crashlytics: FirebaseCrashlytics
-    ): Timber.Tree() {
+    ) : Timber.Tree() {
 
         override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
 
