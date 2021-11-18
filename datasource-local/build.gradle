@@ -15,6 +15,23 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        // used by Room, to test migrations
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"
+                ]
+            }
+        }
+    }
+
+    // used by Room, to test migrations
+    sourceSets {
+        androidTest.assets.srcDirs +=
+                files("$projectDir/schemas".toString())
     }
 
     buildTypes {
@@ -90,18 +107,19 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
-    // Network Frameworks
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    // TODO:: Has some build issues `Duplicate Class` with kotlinx-serialization framework. Instead, copy pasted source code and include it as part of this project
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$retrofitKotlinxSerializationConverterVersion")
-    // OkHttp
-    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
-
-    // Facebook Stetho - A sophisticated debug bridge for Android applications
-    implementation "com.facebook.stetho:stetho-okhttp3:$facebookStethoVersion"
+    // LocalDB Frameworks
+    // AndroidX RoomDB
+    implementation "androidx.room:room-runtime:$androidXRoomVersion"
+    kapt "androidx.room:room-compiler:$androidXRoomVersion"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$androidXRoomVersion"
+    // Test helpers
+    testImplementation("androidx.room:room-testing:$androidXRoomVersion")
+    // https://youtrack.jetbrains.com/issue/KT-45883
+    // - KAPT: "Cannot find setter for field" compiling projects with Room db breaks using 1.5.0-M2
+    //   - https://youtrack.jetbrains.com/issue/KT-45883#focus=Comments-27-4825563.0-0
+    //      - Simple local workaround is to explicitly add dependency to newer version:
+    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.2.0"
 
     // Timber Log
     implementation "com.jakewharton.timber:timber:$timberLogVersion"
