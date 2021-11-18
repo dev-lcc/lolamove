@@ -1,8 +1,10 @@
 package hk.com.lolamove.data.di
 
+import hk.com.lolamove.data.usecase.GetDeliveryFavoritesUseCaseImpl
 import hk.com.lolamove.data.usecase.GetListOfDeliveriesUseCaseImpl
 import hk.com.lolamove.datasource.local.di.LocalDatasourceModule
 import hk.com.lolamove.datasource.remote.di.RemoteDatasourceModule
+import hk.com.lolamove.domain.usecase.GetDeliveryFavoritesUseCase
 import hk.com.lolamove.domain.usecase.GetListOfDeliveriesUseCase
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -34,6 +36,11 @@ class DataModule(
                     single<GetListOfDeliveriesUseCase> {
                         GetListOfDeliveriesUseCaseImpl(
                             deliveriesRestApiDatasource = get(),
+                        )
+                    }
+                    single<GetDeliveryFavoritesUseCase> {
+                        GetDeliveryFavoritesUseCaseImpl(
+                            favoritesLocalDatasource = get(),
                         )
                     }
                 }

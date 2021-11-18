@@ -23,7 +23,8 @@ class RemoteDatasourceModule(
 ) {
 
     fun build(): Module = module {
-        single(named(NamedDependency.REST_API_URL_ENDPOINT)) { provideCache(context = get()) }
+        single(named(NamedDependency.CACHE)) { provideCache(context = get()) }
+
         single(named(NamedDependency.OKHTTPCLIENT)) {
             provideOkHttpClient(
                 cache = get(named(NamedDependency.CACHE)),
@@ -31,7 +32,10 @@ class RemoteDatasourceModule(
             )
         }
 
+        single(named(NamedDependency.REST_API_URL_ENDPOINT)) { restApiUrlEndPoint }
+
         single(named(NamedDependency.JSON)) { provideJson() }
+
         single(named(NamedDependency.RETROFIT)) {
             provideRetrofit(
                 urlEndpoint = restApiUrlEndPoint,
@@ -43,7 +47,15 @@ class RemoteDatasourceModule(
         /**
          * Retrofit Service(s)
          */
-        single { provideRetrofitService<DeliveriesRetrofitService>(retrofit = get(named(NamedDependency.RETROFIT))) }
+        single {
+            provideRetrofitService<DeliveriesRetrofitService>(
+                retrofit = get(
+                    named(
+                        NamedDependency.RETROFIT
+                    )
+                )
+            )
+        }
         // TODO:: Add more Retrofit Services here...
 
         /**
@@ -75,7 +87,7 @@ class RemoteDatasourceModule(
                 )
             }
             .apply {
-                if(isDebug) {
+                if (isDebug) {
                     // Attach logger on DEBUG build
                     addNetworkInterceptor(
                         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -113,11 +125,16 @@ class RemoteDatasourceModule(
         retrofit.create()
 
     object NamedDependency {
-        val REST_API_URL_ENDPOINT = "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.REST_API_URL_ENDPOINT"
-        val CACHE = "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.CACHE"
-        val JSON = "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.JSON"
-        val RETROFIT = "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.RETROFIT"
-        val OKHTTPCLIENT = "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.OKHTTPCLIENT"
+        val REST_API_URL_ENDPOINT =
+            "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.REST_API_URL_ENDPOINT"
+        val CACHE =
+            "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.CACHE"
+        val JSON =
+            "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.JSON"
+        val RETROFIT =
+            "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.RETROFIT"
+        val OKHTTPCLIENT =
+            "${RemoteDatasourceModule::class.java.`package`.name}.${RemoteDatasourceModule::class.java.simpleName}.OKHTTPCLIENT"
     }
 
 }
