@@ -18,7 +18,7 @@ import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 class RemoteDatasourceModule(
-    private val apiUrlEndPoint: String,
+    private val restApiUrlEndPoint: String,
     private val isDebug: Boolean = false
 ) {
 
@@ -34,7 +34,7 @@ class RemoteDatasourceModule(
         single(named(NamedDependency.JSON)) { provideJson() }
         single(named(NamedDependency.RETROFIT)) {
             provideRetrofit(
-                urlEndpoint = apiUrlEndPoint,
+                urlEndpoint = restApiUrlEndPoint,
                 client = get(named(NamedDependency.OKHTTPCLIENT)),
                 json = get(named(NamedDependency.JSON)),
             )
