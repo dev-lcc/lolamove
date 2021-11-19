@@ -168,7 +168,6 @@ class ItemDeliveriesAdapter(
 
             // Delivery Photo
             item.goodsPicture?.let { url ->
-                Timber.d("item.goodsPicture:: url -> $url")
                 Glide.with(context)
                     .asDrawable()
                     .load(url)

@@ -9,6 +9,15 @@
     <fragment android:id="@+id/homeFragment"
         android:name="hk.com.lolamove.app.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home"
+        >
+        <action
+            android:id="@+id/action_homeFragment_to_deliveryDetailsFragment"
+            app:destination="@id/deliveryDetailsFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/deliveryDetailsFragment"
+        android:name="hk.com.lolamove.app.ui.deliverydetails.DeliveryDetailsFragment"
+        tools:layout="@layout/fragment_delivery_details"
         />
 
 </navigation>

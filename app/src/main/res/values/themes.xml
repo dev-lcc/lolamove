@@ -15,6 +15,12 @@
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <!-- Toolbar Style -->
+        <item name="toolbarNavigationButtonStyle">@style/AppToolbarButtonNavigation</item>
+    </style>
+
+    <style name="AppToolbarButtonNavigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">@color/red_a700</item>
     </style>
 
     <style name="Theme.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" >
@@ -38,7 +44,7 @@
         <item name="postSplashScreenTheme">@style/Theme.L0LAMove</item>
     </style>
 
-    <style name="Rsvp.CollapsingToolbar" parent="Widget.Design.CollapsingToolbar">
+    <style name="Theme.CollapsingToolbar" parent="Widget.Design.CollapsingToolbar">
         <item name="android:fitsSystemWindows">true</item>
         <item name="expandedTitleMarginTop">48dp</item>
         <item name="android:clipToPadding">true</item>
@@ -59,6 +65,18 @@
         <item name="android:background">?attr/colorPrimary</item>
         <item name="layout_collapseMode">pin</item>
         <item name="titleTextAppearance">@style/Theme.AppBar.TitleTextAppearance</item>
+        <item name="popupTheme">@style/Theme.PopupOverlay</item>
+    </style>
+
+    <style name="Theme.Toolbar.UnderCollapsing" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_gravity">top</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="navigationIconTint">@color/red_a700</item>
+        <item name="titleTextColor">@color/red_a700</item>
+        <item name="layout_collapseMode">pin</item>
         <item name="popupTheme">@style/Theme.PopupOverlay</item>
     </style>
 
