@@ -34,11 +34,11 @@
 -keepattributes *Annotation*, InnerClasses
 -dontnote kotlinx.serialization.AnnotationsKt # core serialization annotations
 
--keep,includedescriptorclasses class au.com.rsvp.app.**$$serializer { *; }
--keepclassmembers class au.com.rsvp.app.* {
+-keep,includedescriptorclasses class hk.com.lolamove.**$$serializer { *; }
+-keepclassmembers class hk.com.lolamove.app.* {
     *** Companion;
 }
--keepclasseswithmembers class au.com.rsvp.app.* {
+-keepclasseswithmembers class hk.com.lolamove.* {
     kotlinx.serialization.KSerializer serializer(...);
 }
 

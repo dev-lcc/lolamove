@@ -6,6 +6,10 @@ sealed class GetListOfDeliveriesResult {
 
     object Loading: GetListOfDeliveriesResult()
 
+    object LoadingMore: GetListOfDeliveriesResult()
+
+    object Empty: GetListOfDeliveriesResult()
+
     data class Success(
         val deliveries: List<Delivery>
     ): GetListOfDeliveriesResult()
