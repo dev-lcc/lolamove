@@ -22,7 +22,7 @@
             app:title="@string/deliveries_appbar_title"
             app:expandedTitleMarginBottom="42dp"
             app:expandedTitleMarginStart="16dp"
-            style="@style/Rsvp.CollapsingToolbar"
+            style="@style/Theme.CollapsingToolbar"
             >
 
             <FrameLayout
@@ -36,7 +36,6 @@
                 app:title="@string/deliveries_appbar_title"
                 style="@style/Theme.Toolbar"
                 />
-            <!-- app:menu="@menu/matches" -->
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

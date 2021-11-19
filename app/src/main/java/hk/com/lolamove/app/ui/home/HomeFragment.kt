@@ -78,12 +78,12 @@ class HomeFragment: LolaMoveBaseFragment() {
                         screenName = FavoritesFragment::class.java.simpleName
                         screenClass = FavoritesFragment::class.java.`package`!!.name
                     }
-                    R.id.fragmentMyAccount -> {
+                    /*R.id.fragmentMyAccount -> {
                         binding.viewpager.setCurrentItem(TAB_MY_ACCOUNT, false)
 
                         screenName = MyAccountFragment::class.java.simpleName
                         screenClass = MyAccountFragment::class.java.`package`!!.name
-                    }
+                    }*/
                 }
 
                 // Log screen view(bottom nav item selected)
@@ -104,17 +104,17 @@ class HomeFragment: LolaMoveBaseFragment() {
             when(position) {
                 TAB_DELIVERIES -> DeliveriesFragment()
                 TAB_FAVORITES -> FavoritesFragment()
-                TAB_MY_ACCOUNT -> MyAccountFragment()
+                /*TAB_MY_ACCOUNT -> MyAccountFragment()*/
                 else -> Fragment()
             }
     }
 
     companion object {
-        const val TAB_COUNT = 3
+        const val TAB_COUNT = 2/*3*/
 
         const val TAB_DELIVERIES = 0
         const val TAB_FAVORITES = 1
-        const val TAB_MY_ACCOUNT = 2
+        /*const val TAB_MY_ACCOUNT = 2*/
     }
 
 }

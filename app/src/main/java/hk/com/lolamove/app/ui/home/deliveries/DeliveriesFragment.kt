@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import hk.com.lolamove.app.LolaMoveBaseFragment
 import hk.com.lolamove.app.R
 import hk.com.lolamove.app.databinding.FragmentDeliveriesBinding
+import hk.com.lolamove.app.ui.deliverydetails.DeliveryDetailsFragment
 import hk.com.lolamove.app.ui.home.deliveries.adapter.ItemDeliveriesAdapter
 import hk.com.lolamove.app.utils.EndlessRecyclerViewScrollListener
 import hk.com.lolamove.app.utils.flow.throttleFirst
@@ -80,7 +81,8 @@ class DeliveriesFragment: LolaMoveBaseFragment() {
         adapter = ItemDeliveriesAdapter(
             onTapItem = { delivery: Delivery ->
                 Timber.d("onTapItem::delivery = $delivery")
-                // TODO:: onTapItem
+                // Attempt View Details
+                viewModel.intent.viewDetails(of = delivery)
             },
             onToggleFavorite = { isChecked: Boolean, delivery: Delivery ->
                 Timber.d("onToggleFavorite::delivery = $delivery")
@@ -142,6 +144,8 @@ class DeliveriesFragment: LolaMoveBaseFragment() {
             // HIDE List and DISPLAY Empty Label
             binding.rvDeliveries.visibility = View.GONE
             binding.containerEmptyState.visibility = View.VISIBLE
+
+            binding.appBarLayout.setExpanded(false)
         } else {
             // REVEAL List
             binding.containerEmptyState.visibility = View.GONE
@@ -177,6 +181,17 @@ class DeliveriesFragment: LolaMoveBaseFragment() {
                 errorFetchDeliveriesSnackbar?.dismiss()
                 errorFetchDeliveriesSnackbar?.setText(errMsg)
                 errorFetchDeliveriesSnackbar?.show()
+            }
+            is SingleEvent.NavigateToDeliveryDetails -> {
+                // Navigate To Delivery Details
+                if(appNavController.currentDestination?.id == R.id.homeFragment) {
+                    appNavController.navigate(
+                        R.id.action_homeFragment_to_deliveryDetailsFragment,
+                        DeliveryDetailsFragment.createInputArguments(
+                            item = event.item
+                        )
+                    )
+                }
             }
         }
     }

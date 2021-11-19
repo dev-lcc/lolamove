@@ -56,8 +56,8 @@ android {
             }
         }
         release {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             useProguard true
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -118,6 +118,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/main.kotlin_module'
     }
 
     packagingOptions {
@@ -224,6 +228,7 @@ dependencies {
     implementation "io.github.reactivecircus.flowbinding:flowbinding-android:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-core:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-activity:$flowbindingVersion"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-lifecycle:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-navigation:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flowbindingVersion"

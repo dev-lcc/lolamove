@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hk.com.lolamove.app.ui.deliverydetails.DeliveryDetailsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:theme="@style/Theme.AppBarOverlay"
+        android:fitsSystemWindows="true"
+        app:elevation="3dp">
+
+        <!--<androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?attr/colorPrimary"
+            >
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:background="?attr/colorPrimary"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                app:popupTheme="@style/Theme.PopupOverlay"
+                app:titleTextAppearance="@style/Theme.AppBar.TitleTextAppearance"
+                app:title="@string/delivery_details_appbar_title"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:titleEnabled="false"
+            app:titleCollapseMode="fade"
+            style="@style/Theme.CollapsingToolbar"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/acivDeliveryPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/light_gray"
+                    android:scaleType="fitXY"
+                    app:layout_collapseMode="parallax"
+                    tools:srcCompat="@drawable/ic_delivery_white"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/acivFavoriteIndicator"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:padding="4dp"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="bottom|right"
+                    app:tint="@color/red_a700"
+                    app:srcCompat="@drawable/ic_favorite"
+                    />
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                app:popupTheme="@style/Theme.PopupOverlay"
+                style="@style/Theme.Toolbar.UnderCollapsing"
+                />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="48dp"
+            >
+
+            <!--<androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/acivDeliveryPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/light_gray"
+                android:scaleType="fitCenter"
+                app:layout_constraintDimensionRatio="4:3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/ic_delivery_white"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/acivFavoriteIndicator"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:padding="4dp"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/acivDeliveryPhoto"
+                app:layout_constraintRight_toRightOf="parent"
+                app:tint="?colorPrimary"
+                app:srcCompat="@drawable/ic_favorite"
+                />-->
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actvRemarks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="left|center_vertical"
+                android:textAlignment="gravity"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="Minim deserunt nisi qui veniam est amet pariatur voluptate ea est exercitation cupidatat sit ea."
+                />
+
+            <!-- Sender Info -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewSenderInfo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="8dp"
+                app:cardElevation="1dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="false"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/guidelineInfo"
+                app:layout_constraintTop_toBottomOf="@+id/actvRemarks"
+                app:layout_constraintBottom_toBottomOf="@+id/cardViewCostBreakdownInfo"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="16dp"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvSenderLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:text="@string/delivery_details_sender_label"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvSenderName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/actvSenderLabel"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:text="Kate Hudson"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvSenderPhone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/actvSenderName"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:text="+639185671234"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvSenderEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/actvSenderPhone"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:text="kate.hudson007@gmail.com"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Cost Breakdown Info -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewCostBreakdownInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="12dp"
+                app:cardElevation="1dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="false"
+                app:layout_constraintLeft_toRightOf="@+id/guidelineInfo"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/actvRemarks"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="16dp"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvSummaryLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:text="Summary"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvDeliveryFee"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/actvSummaryLabel"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:text="Delivery Fee: $14.10"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvSurcharge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/actvDeliveryFee"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:text="Surcharge: $4.10"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvTotalFee"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="18sp"
+                        android:textColor="@color/red_a700"
+                        app:layout_constraintTop_toBottomOf="@+id/actvSurcharge"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:text="Total: $18.20"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Route Info -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewRouteInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="64dp"
+                app:contentPaddingBottom="16dp"
+                app:cardElevation="1dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="false"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewCostBreakdownInfo"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvRouteLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:text="@string/delivery_details_route_label"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvFromRouteLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="@string/delivery_details_route_from_label"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@+id/actvRouteLabel"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvFromRouteValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/actvFromRouteLabel"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        tools:text="Central Park District"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/acivRoute"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:padding="4dp"
+                        app:layout_constraintTop_toBottomOf="@+id/actvRouteLabel"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/guidelineRoute"
+                        app:layout_constraintRight_toLeftOf="@+id/guidelineRoute"
+                        tools:tint="?colorPrimary"
+                        tools:srcCompat="@drawable/ic_route"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvToRouteLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:text="@string/delivery_details_route_to_label"
+                        app:layout_constraintTop_toBottomOf="@+id/actvRouteLabel"
+                        app:layout_constraintRight_toRightOf="parent"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actvToRouteValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="12dp"
+                        android:gravity="left|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/actvToRouteLabel"
+                        app:layout_constraintRight_toRightOf="parent"
+                        tools:text="River Southwhale Park"
+                        />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidelineRoute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.535"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/efabFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        app:iconGravity="textStart"
+        android:layout_gravity="bottom|center_horizontal"
+        app:backgroundTint="?colorPrimary"
+        tools:icon="@drawable/ic_favorite_outline"
+        app:iconTint="@color/white"
+        tools:text="Add to Favorites"
+        android:textColor="@color/white"
+        />
+
+    <!--
+
+    app:backgroundTint="?colorPrimary"
+    tools:icon="@drawable/ic_favorite_outline"
+    app:iconTint="@color/white"
+    tools:text="Add to Favorites"
+    android:textColor="@color/white"
+
+    app:backgroundTint="@color/gray"
+    tools:icon="@drawable/ic_favorite"
+    app:iconTint="@color/red_a700"
+    tools:text="Remove from Favorites"
+    android:textColor="@color/red_a700"
+    -->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

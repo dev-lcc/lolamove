@@ -52,6 +52,10 @@ class DeliveriesViewModel(
                 removeDeliveryFromFavoritesUseCase(deliveryId)
             }
         }
+
+        override fun viewDetails(of: Delivery) {
+            _singleEvent.tryEmit(SingleEvent.NavigateToDeliveryDetails(of))
+        }
     }
 
     // Placeholder variable to store favorite(s)
@@ -196,6 +200,12 @@ interface ViewIntent {
      */
     fun removeFromFavorites(which: Delivery)
 
+    /**
+     * Navigate to Delivery Detail.
+     * - Invoked on tap item.
+     */
+    fun viewDetails(of: Delivery)
+
 }
 
 sealed class SingleEvent {
@@ -212,4 +222,8 @@ sealed class SingleEvent {
     data class ErrorFetchListOfDeliveriesNextPage(val error: GetListOfDeliveriesResult.Error) :
         SingleEvent()
 
+    /**
+     * Dispatched on invoke viewDetails()
+     */
+    data class NavigateToDeliveryDetails(val item: Delivery): SingleEvent()
 }
