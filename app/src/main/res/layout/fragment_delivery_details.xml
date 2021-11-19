@@ -16,27 +16,6 @@
         android:fitsSystemWindows="true"
         app:elevation="3dp">
 
-        <!--<androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="?attr/colorPrimary"
-            >
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="0dp"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:background="?attr/colorPrimary"
-                app:navigationIcon="?attr/homeAsUpIndicator"
-                app:popupTheme="@style/Theme.PopupOverlay"
-                app:titleTextAppearance="@style/Theme.AppBar.TitleTextAppearance"
-                app:title="@string/delivery_details_appbar_title"
-                />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>-->
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
@@ -104,30 +83,6 @@
             android:layout_height="match_parent"
             android:paddingBottom="48dp"
             >
-
-            <!--<androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/acivDeliveryPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/light_gray"
-                android:scaleType="fitCenter"
-                app:layout_constraintDimensionRatio="4:3"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ic_delivery_white"
-                />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/acivFavoriteIndicator"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:padding="4dp"
-                android:layout_margin="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/acivDeliveryPhoto"
-                app:layout_constraintRight_toRightOf="parent"
-                app:tint="?colorPrimary"
-                app:srcCompat="@drawable/ic_favorite"
-                />-->
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/actvRemarks"
