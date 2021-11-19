@@ -142,6 +142,8 @@ class DeliveriesFragment: LolaMoveBaseFragment() {
             // HIDE List and DISPLAY Empty Label
             binding.rvDeliveries.visibility = View.GONE
             binding.containerEmptyState.visibility = View.VISIBLE
+
+            binding.appBarLayout.setExpanded(false)
         } else {
             // REVEAL List
             binding.containerEmptyState.visibility = View.GONE

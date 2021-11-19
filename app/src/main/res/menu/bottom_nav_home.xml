@@ -23,12 +23,12 @@
         app:showAsAction="always"
         />
 
-    <item
+    <!--<item
         android:id="@+id/fragmentMyAccount"
         android:icon="@drawable/ic_account"
         android:title="@string/home_bottom_nav_myaccount"
         android:iconTint="@color/bottom_navigation_view_item_selector"
         android:orderInCategory="102"
         app:showAsAction="always"
-        />
+        />-->
 </menu>
