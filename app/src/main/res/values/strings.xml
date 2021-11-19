@@ -11,6 +11,10 @@
     <string name="deliveries_from_label" formatted="true"><![CDATA[<b>From:</b> %s]]></string>
     <string name="deliveries_empty_list">You have NO deliveries at the moment…</string>
 
+    <string name="favorites_appbar_title">Favorites</string>
+    <string name="favorites_from_label" formatted="true"><![CDATA[<b>From:</b> %s]]></string>
+    <string name="favorites_empty_list">You have NO favorite(s) at the moment…</string>
+
     <string name="delivery_details_appbar_title">Delivery Details</string>
     <string name="delivery_details_sender_label">Sender</string>
     <string name="delivery_details_summary_label">Summary</string>

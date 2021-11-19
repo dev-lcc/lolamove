@@ -16,5 +16,6 @@ object DeliveryMapper: Mapper<DTOFavoriteDelivery, Delivery> {
             route = input.route?.let(RouteMapper::map),
             sender = input.sender?.let(SenderMapper::map),
             currencySymbol = input.currencySymbol,
+            isFavorite = true,
         )
 }
