@@ -19,3 +19,33 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+################################################
+## Glide - https://github.com/bumptech/glide
+################################################
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+# Kotlinx Serialization(https://github.com/Kotlin/kotlinx.serialization)
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.AnnotationsKt # core serialization annotations
+
+-keep,includedescriptorclasses class hk.com.lolamove.**$$serializer { *; }
+-keepclassmembers class hk.com.lolamove.app.* {
+    *** Companion;
+}
+-keepclasseswithmembers class hk.com.lolamove.* {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+################################################
+## Get deobfuscated crash reports with the Firebase Crashlytics SDK
+##  - https://firebase.google.com/docs/crashlytics/get-deobfuscated-reports?platform=android
+################################################
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+-keep public class * extends java.lang.Exception

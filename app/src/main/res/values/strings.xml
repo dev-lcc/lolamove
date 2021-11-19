@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">L0LAMove</string>
+
+    <string name="something_went_wrong_please_try_again">Something went wrong. Please try again…</string>
+
+    <string name="home_bottom_nav_deliveries">Deliveries</string>
+    <string name="home_bottom_nav_favorites">Favorites</string>
+    <string name="home_bottom_nav_myaccount">My Account</string>
+
+    <string name="deliveries_appbar_title">Deliveries</string>
+    <string name="deliveries_from_label" formatted="true"><![CDATA[<b>From:</b> %s]]></string>
+    <string name="deliveries_empty_list">You have NO deliveries at the moment…</string>
+
+    <string name="favorites_appbar_title">Favorites</string>
+    <string name="favorites_from_label" formatted="true"><![CDATA[<b>From:</b> %s]]></string>
+    <string name="favorites_empty_list">You have NO favorite(s) at the moment…</string>
+
+    <string name="delivery_details_appbar_title">Delivery Details</string>
+    <string name="delivery_details_sender_label">Sender</string>
+    <string name="delivery_details_summary_label">Summary</string>
+    <string name="delivery_details_summary_delivery_fee" formatted="true">Delivery Fee: %s</string>
+    <string name="delivery_details_summary_surcharge" formatted="true">Surcharge: %s</string>
+    <string name="delivery_details_summary_total" formatted="true">Total: %s</string>
+    <string name="delivery_details_route_label">Route</string>
+    <string name="delivery_details_route_from_label">From</string>
+    <string name="delivery_details_route_to_label">To</string>
+    <string name="delivery_details_btn_add_to_favorites">Add to Favorites</string>
+    <string name="delivery_details_btn_remove_from_favorites">Remove from Favorites</string>
+
 </resources>

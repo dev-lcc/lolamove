@@ -22,8 +22,8 @@ android {
 
     defaultConfig {
         applicationId "hk.com.lolamove"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -56,8 +56,8 @@ android {
             }
         }
         release {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             useProguard true
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -124,6 +124,10 @@ android {
         exclude 'META-INF/main.kotlin_module'
     }
 
+    packagingOptions {
+        exclude 'META-INF/main.kotlin_module'
+    }
+
     testOptions {
         unitTests {
             includeAndroidResources = true
@@ -135,6 +139,9 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':domain')
+    implementation project(':data')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
@@ -169,6 +176,8 @@ dependencies {
     // AndroidX Activity
     implementation "androidx.activity:activity:$androidXActivity"
     implementation "androidx.activity:activity-ktx:$androidXActivity"
+    // AndriodX SplashScreen
+    implementation "androidx.core:core-splashscreen:$androidXSplashScreen"
     // AndroidX Fragment
     implementation "androidx.fragment:fragment-ktx:$androidXFragmentVersion"
     // Material Components
@@ -180,6 +189,21 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
     implementation "androidx.appcompat:appcompat-resources:$androidXAppCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+    // Dependency Injection Framework
+    // Koin Dependency Injection
+    // Koin for Kotlin
+    implementation "io.insert-koin:koin-core:$koinVersion"
+    // Koin for Android
+    implementation "io.insert-koin:koin-android:$koinVersion"
+    // Koin AndroidX Scope feature
+    implementation "io.insert-koin:koin-androidx-scope:$koinVersion"
+    // Koin AndroidX ViewModel feature
+    implementation "io.insert-koin:koin-androidx-viewmodel:$koinVersion"
+    // Koin Test
+    testImplementation("io.insert-koin:koin-test:$koinVersion") {
+        exclude group: 'org.mockito'
+    }
 
     // Loupe ImageView Helper
     implementation "com.ablanco.zoomy:zoomy:$zoomyImageViewHelperVersion"
@@ -205,13 +229,10 @@ dependencies {
     implementation "io.github.reactivecircus.flowbinding:flowbinding-core:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-activity:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-drawerlayout:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-lifecycle:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-navigation:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-preference:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbindingVersion"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager2:$flowbindingVersion"
 
     // Firebase SDK
