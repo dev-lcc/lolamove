@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">L0LAMove</string>
 
+    <string name="something_went_wrong_please_try_again">Something went wrong. Please try again…</string>
+
     <string name="home_bottom_nav_deliveries">Deliveries</string>
     <string name="home_bottom_nav_favorites">Favorites</string>
     <string name="home_bottom_nav_myaccount">My Account</string>
+
+    <string name="deliveries_appbar_title">Deliveries</string>
+    <string name="deliveries_from_label" formatted="true"><![CDATA[<b>From:</b> %s]]></string>
+    <string name="deliveries_empty_list">You have NO deliveries at the moment…</string>
 
 </resources>

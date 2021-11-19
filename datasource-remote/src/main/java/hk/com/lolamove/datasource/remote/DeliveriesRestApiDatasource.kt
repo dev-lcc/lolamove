@@ -35,7 +35,7 @@ class DeliveriesRestApiDatasource(
             // Map to Domain
             return data.map(DeliveryMapper::map)
         } else {
-            throw HttpException(response)
+            throw HttpException(response).also { it.printStackTrace() }
         }
     }
 

@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.facebook.stetho.Stetho
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import hk.com.lolamove.app.di.ViewModelModules
 import hk.com.lolamove.data.di.DataModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
@@ -20,7 +21,7 @@ class LolaMoveApplication : Application() {
         // Init Koin Dependency here...
         startKoin {
             androidContext(applicationContext)
-
+            loadKoinModules(ViewModelModules.build())
             loadKoinModules(
                 DataModule(
                     restApiUrlEndPoint = BuildConfig.REST_API_URL_ENDPOINT,
