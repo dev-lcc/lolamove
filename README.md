@@ -19,30 +19,30 @@
 	* Using 1 Activity to host NavigationView which manages the entire Navigation Graph.
 
 ## Navigation Graph
-![Navigation Graph](https://i.imgur.com/BJ2bKT4.jpg)
+![Navigation Graph](https://i.imgur.com/dddXeBy.jpg)
 
 ## Screenshots
 ### Splashscreen
-![Splashscreen](https://i.imgur.com/P6hQMil.png)
+![Splashscreen](https://i.imgur.com/i97BHYp.png)
 
 ### List Of Deliveries
 #### Collapsed
-![List Of Deliveries - Collapsed](https://i.imgur.com/CCn94BM.png)
+![List Of Deliveries - Collapsed](https://i.imgur.com/7SAQ6ug.png)
 
 #### Expanded
-![List Of Deliveries - Expanded](https://i.imgur.com/J0L825d.png)
+![List Of Deliveries - Expanded](https://i.imgur.com/LOmB48r.png)
 
 ### Empty Favorites
-![Empty Favorites](https://i.imgur.com/LT7Opob.png)
+![Empty Favorites](https://i.imgur.com/8ACrcgl.png)
 
 ### Favorites
-![Favorites](https://i.imgur.com/cpPEE0f.png)
+![Favorites](https://i.imgur.com/pnxQ1EP.png)
 
 ### Delivery Detail Screen
 #### Expanded
-![Delivery Detail Screen - Expanded](https://i.imgur.com/GbjSnjH.png)
+![Delivery Detail Screen - Expanded](https://i.imgur.com/GTtMY6L.png)
 
 #### Collapsed
-![Delivery Detail Screen - Collapsed](https://i.imgur.com/icOPXTo.png)
+![Delivery Detail Screen - Collapsed](https://i.imgur.com/dnrsnqB.png)
 
 
