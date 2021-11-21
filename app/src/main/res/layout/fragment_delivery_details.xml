@@ -114,6 +114,7 @@
                 app:cardElevation="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardUseCompatPadding="false"
+                app:contentPaddingBottom="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineInfo"
                 app:layout_constraintTop_toBottomOf="@+id/actvRemarks"
@@ -125,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:paddingBottom="16dp"
+                    android:layout_marginBottom="8dp"
                     >
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -206,6 +207,7 @@
                 app:cardElevation="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardUseCompatPadding="false"
+                app:contentPaddingBottom="8dp"
                 app:layout_constraintLeft_toRightOf="@+id/guidelineInfo"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/actvRemarks"
@@ -216,7 +218,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    android:paddingBottom="16dp"
+                    android:paddingBottom="8dp"
                     >
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -233,7 +235,7 @@
                         android:textColor="@color/black"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        tools:text="Summary"
+                        android:text="@string/delivery_details_summary_label"
                         />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -294,7 +296,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="64dp"
-                app:contentPaddingBottom="16dp"
+                app:contentPaddingBottom="8dp"
                 app:cardElevation="1dp"
                 app:cardCornerRadius="12dp"
                 app:cardUseCompatPadding="false"
@@ -308,6 +310,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:layout_marginBottom="8dp"
                     >
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -368,8 +371,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toRightOf="@+id/guidelineRoute"
                         app:layout_constraintRight_toLeftOf="@+id/guidelineRoute"
+                        app:srcCompat="@drawable/ic_route"
                         tools:tint="?colorPrimary"
-                        tools:srcCompat="@drawable/ic_route"
                         />
 
                     <androidx.appcompat.widget.AppCompatTextView
