@@ -6,12 +6,11 @@ plugins {
 }
 
 android {
-    buildToolsVersion rootProject.ext.buildToolsVersion
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -37,7 +36,6 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            useProguard false
         }
         release {
             minifyEnabled false
@@ -119,7 +117,7 @@ dependencies {
     // - KAPT: "Cannot find setter for field" compiling projects with Room db breaks using 1.5.0-M2
     //   - https://youtrack.jetbrains.com/issue/KT-45883#focus=Comments-27-4825563.0-0
     //      - Simple local workaround is to explicitly add dependency to newer version:
-    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.2.0"
+    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
 
     // Timber Log
     implementation "com.jakewharton.timber:timber:$timberLogVersion"

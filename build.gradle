@@ -8,16 +8,19 @@ ext {
     kotlinx_serialization_version = '1.0.0'
 
     junitVersion = '4.12'
-    mockitoVersion = '3.1.0'
+    mockitoVersion = '4.3.1'
     androidXCoreTesting = '2.1.0'
     androidXTest = '1.1.1'
     androidXTestExt = '1.0.0'
-    mockKVersion = '1.11.0'
+    mockKVersion = '1.12.3'
 
     // Coroutines
     coroutinesVersion = '1.4.3'
     // UI FlowBinding(https://github.com/ReactiveCircus/FlowBinding)
     flowbindingVersion = '1.2.0'
+
+    // Jetpack Compose
+    navigationComposeVersion = '2.4.1'
 
     // AndroidX Framework
     androidXAppCompatVersion = '1.3.1'
@@ -36,10 +39,10 @@ ext {
     androidXCardViewVersion = '1.0.0'   // Material Card
 
     // Loupe ImageView Helper
-    zoomyImageViewHelperVersion = '1.1.0'
+    zoomyImageViewHelperVersion = '1.0.0'
 
     // AndroidX Activity
-    androidXActivity = '1.1.0'
+    androidXActivity = '1.4.0'
     // AndroidX Fragment
     androidXFragmentVersion = '1.2.4'
     // AndroidX Navigation
@@ -69,7 +72,7 @@ ext {
     // Facebook API
     facebookApiVersion = '7.0.0'
     // Facebook Stetho
-    facebookStethoVersion = '1.5.1'
+    facebookStethoVersion = '1.6.0'
 
     // Circle Image View
     dehdodenhofcircleimageview = '3.1.0'
@@ -83,7 +86,7 @@ ext {
     // LeakCanary
     leakCanaryVersion = '2.6'
     // https://github.com/kirich1409/ViewBindingPropertyDelegate
-    viewbindingpropertydelegateVersion = '1.4.1'
+    viewbindingpropertydelegateVersion = '1.5.6'
 
     // Chris Banes PhotoView (https://github.com/Baseflow/PhotoView)
     chrisBanesPhotoViewVersion = '2.3.0'
@@ -91,14 +94,14 @@ ext {
 
 buildscript {
     // Buildscript Dependencies
-    ext.kotlin_version = "1.5.10"
-    ext.buildGradleToolVersion = '4.2.2'
+    ext.kotlin_version = "1.6.10"
+    ext.compose_version = "1.1.1"
+    ext.buildGradleToolVersion = '7.0.3'
     ext.firebaseCrashlyticsGradleVersion = '2.5.2' // Firebase Crashlytics
     ext.googleServicesVersion = '4.3.10'
 
     repositories {
         google()
-        jcenter()
         mavenCentral()
         maven { url "https://maven.google.com" }
         maven { url 'https://maven.fabric.io/public' }
@@ -118,7 +121,6 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter() // Warning: this repository is going to shut down soon
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.fabric.io/public' }

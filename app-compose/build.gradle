@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'kotlinx-serialization'
@@ -118,10 +118,12 @@ android {
     }
 
     buildFeatures {
-        // ViewBinding Support
-        viewBinding {
-            enabled = true
-        }
+        // Jetpack Compose
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion kotlin_version
     }
 
     compileOptions {
@@ -131,6 +133,11 @@ android {
 
     packagingOptions {
         exclude 'META-INF/main.kotlin_module'
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += "**/attach_hotspot_windows.dll"
+            excludes += "META-INF/licenses/ASM"
+        }
     }
 
     testOptions {
@@ -142,6 +149,7 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':domain')
@@ -163,6 +171,21 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "io.mockk:mockk:$mockKVersion"
 
+    // Jetpack Compose
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.activity:activity-compose:$androidXActivity"
+    implementation "androidx.navigation:navigation-compose:$navigationComposeVersion"
+    implementation "com.google.android.material:compose-theme-adapter:$compose_version"
+
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose_version")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
     // Android Testing Support Library's runner and rules
     androidTestImplementation "androidx.test:runner:$androidXTest"
     androidTestImplementation "androidx.test:rules:$androidXTest"
@@ -180,19 +203,8 @@ dependencies {
     // AndroidX Activity
     implementation "androidx.activity:activity:$androidXActivity"
     implementation "androidx.activity:activity-ktx:$androidXActivity"
-    // AndriodX SplashScreen
+    // AndroidX SplashScreen
     implementation "androidx.core:core-splashscreen:$androidXSplashScreen"
-    // AndroidX Fragment
-    implementation "androidx.fragment:fragment-ktx:$androidXFragmentVersion"
-    // Material Components
-    implementation "com.google.android.material:material:$rootProject.androidMaterialComponentsVersion"
-    // UI Components
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$androidXRecyclerViewVersion"
-    implementation "androidx.recyclerview:recyclerview:$androidXRecyclerViewVersion"
-    implementation "androidx.cardview:cardview:$androidXCardViewVersion"
-    implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
-    implementation "androidx.appcompat:appcompat-resources:$androidXAppCompatVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
     // Dependency Injection Framework
     // Koin Dependency Injection
@@ -209,15 +221,6 @@ dependencies {
         exclude group: 'org.mockito'
     }
 
-    // Loupe ImageView Helper
-    implementation "io.github.imablanco:zoomy:$zoomyImageViewHelperVersion"
-
-    // AndroidX Navigation
-    implementation "androidx.navigation:navigation-fragment:$androidXNavigationVersion"
-    implementation "androidx.navigation:navigation-fragment-ktx:$androidXNavigationVersion"
-    implementation "androidx.navigation:navigation-ui:$androidXNavigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$androidXNavigationVersion"
-
     // AndroidX Lifecycle
     kapt "androidx.lifecycle:lifecycle-common-java8:$androidXLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidXLifecycleVersion"
@@ -227,17 +230,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
-
-    // Coroutine Flow Binding
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-android:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-core:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-activity:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-lifecycle:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-navigation:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flowbindingVersion"
-    implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager2:$flowbindingVersion"
 
     // Firebase SDK
     // Import the BoM for the Firebase platform(When using the BoM, you don't specify versions in Firebase library dependencies)
@@ -254,16 +246,6 @@ dependencies {
 
     // Timber Log
     implementation "com.jakewharton.timber:timber:$timberLogVersion"
-
-    // CircleImageView
-    implementation "de.hdodenhof:circleimageview:$dehdodenhofcircleimageview"
-
-    // Chris Banes PhotoView
-    implementation "com.github.chrisbanes:PhotoView:$chrisBanesPhotoViewVersion"
-
-    // Glide Image Loader
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     // debugImplementation because LeakCanary should only run in debug builds.
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
