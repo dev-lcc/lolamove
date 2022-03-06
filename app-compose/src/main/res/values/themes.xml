@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.L0LAMove" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/red_a400</item>
+        <item name="colorPrimaryDark">@color/red_a700</item>
+        <item name="colorAccent">@color/white</item>
+        <!--
+        <item name="colorSecondary">@color/pink_a400</item>
+        <item name="colorSecondaryVariant">@color/pink_a700</item>
+        <item name="colorOnSecondary">@color/white</item>-->
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
+
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Toolbar Style -->
+        <item name="toolbarNavigationButtonStyle">@style/AppToolbarButtonNavigation</item>
     </style>
+
+    <style name="AppToolbarButtonNavigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">@color/red_a700</item>
+    </style>
+
+    <style name="Theme.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" >
+        <item name="colorPrimary">@android:color/white</item>
+    </style>
+    <style name="Theme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        // Set the splash screen background, animated icon, and animation duration.
+        <item name="windowSplashScreenBackground">@color/white</item>
+
+        <!--
+        // Use windowSplashScreenAnimatedIcon to add either a drawable or an
+        // animated drawable. One of these is required.
+        -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/bg_splash_screen</item>
+        <!-- Required for animated icons -->
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+
+        <!-- Set the theme of the Activity that directly follows your splash screen. -->
+        <item name="postSplashScreenTheme">@style/Theme.L0LAMove</item>
+    </style>
+
 </resources>
