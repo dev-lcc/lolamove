@@ -90,6 +90,13 @@ android {
             // TODO:: When multiple environments are setup(i.e. DEV Environment), change this value accordingly
             buildConfigField "String", "REST_API_URL_ENDPOINT", "\"https://mock-api-mobile.dev.lalamove.com/\""
         }
+        mock {
+            applicationIdSuffix ".dev"
+            signingConfig signingConfigs.lolamovedev
+
+            // API REST Endpoint pointing to Apiary(https://app.apiary.io/l0lamove)
+            buildConfigField "String", "REST_API_URL_ENDPOINT", "\"https://private-cc53a5-l0lamove.apiary-mock.com/\""
+        }
     }
 
     kapt {
