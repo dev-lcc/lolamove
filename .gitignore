@@ -22,3 +22,4 @@ gradle/wrapper/gradle-wrapper.jar
 .idea/inspectionProfiles/Project_Default.xml
 *.aab
 
+.idea/.name
