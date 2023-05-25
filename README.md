@@ -1,7 +1,7 @@
 # L0LAMove
 
 ## Summary
-* Used clean-code architecture pattern following simplified MVI
+* Used clean-code architecture pattern following MVVM(Model-View-ViewModel)
 * Setup with multiple modules
 	* `app`
 		- The main module where Android App screens, application, fragments, resources, and all other modules were integrated.
